@@ -18,6 +18,12 @@
 npx autocode-ac
 ```
 
+If npm returns `404 Not Found` (package not published yet), run from GitHub:
+
+```bash
+npx --yes github:apexscaleai/autocode
+```
+
 **Works on Mac, Windows, and Linux.**
 
 <br>
