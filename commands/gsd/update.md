@@ -1,10 +1,10 @@
 ---
 name: gsd:update
-description: Update GSD to latest version with changelog display
+description: Update AutoCode to latest version with changelog display
 ---
 
 <objective>
-Check for GSD updates, install if available, and display what changed.
+Check for AutoCode updates, install if available, and display what changed.
 
 Provides a better update experience than raw `npx autocode-cc` by showing version diff and changelog entries.
 </objective>
@@ -12,7 +12,7 @@ Provides a better update experience than raw `npx autocode-cc` by showing versio
 <process>
 
 <step name="get_installed_version">
-Detect whether GSD is installed locally or globally by checking both locations:
+Detect whether AutoCode is installed locally or globally by checking both locations:
 
 ```bash
 # Check local first (takes priority)
@@ -34,7 +34,7 @@ Parse output:
 
 **If VERSION file missing:**
 ```
-## GSD Update
+## AutoCode Update
 
 **Installed version:** Unknown
 
@@ -68,7 +68,7 @@ Compare installed vs latest:
 
 **If installed == latest:**
 ```
-## GSD Update
+## AutoCode Update
 
 **Installed:** X.Y.Z
 **Latest:** X.Y.Z
@@ -80,7 +80,7 @@ STOP here if already up to date.
 
 **If installed > latest:**
 ```
-## GSD Update
+## AutoCode Update
 
 **Installed:** X.Y.Z
 **Latest:** A.B.C
@@ -99,7 +99,7 @@ STOP here if ahead.
 3. Display preview and ask for confirmation:
 
 ```
-## GSD Update Available
+## AutoCode Update Available
 
 **Installed:** 1.5.10
 **Latest:** 1.5.15
@@ -119,7 +119,7 @@ STOP here if ahead.
 
 ────────────────────────────────────────────────────────────
 
-⚠️  **Note:** The installer performs a clean install of GSD folders:
+⚠️  **Note:** The installer performs a clean install of AutoCode folders:
 - `commands/gsd/` will be wiped and replaced
 - `get-shit-done/` will be wiped and replaced
 - `agents/gsd-*` files will be replaced
@@ -132,7 +132,7 @@ Your custom files in other locations are preserved:
 - Custom hooks ✓
 - Your CLAUDE.md files ✓
 
-If you've modified any GSD files directly, back them up first.
+If you've modified any AutoCode files directly, back them up first.
 ```
 
 Use AskUserQuestion:
@@ -163,12 +163,12 @@ Clear the update cache so statusline indicator disappears:
 
 **If LOCAL install:**
 ```bash
-rm -f ./.claude/cache/gsd-update-check.json
+rm -f ./.claude/cache/autocode-update-check.json ./.claude/cache/gsd-update-check.json
 ```
 
 **If GLOBAL install:**
 ```bash
-rm -f ~/.claude/cache/gsd-update-check.json
+rm -f ~/.claude/cache/autocode-update-check.json ~/.claude/cache/gsd-update-check.json
 ```
 </step>
 
@@ -177,7 +177,7 @@ Format completion message (changelog was already shown in confirmation step):
 
 ```
 ╔═══════════════════════════════════════════════════════════╗
-║  GSD Updated: v1.5.10 → v1.5.15                           ║
+║  AutoCode Updated: v1.5.10 → v1.5.15                      ║
 ╚═══════════════════════════════════════════════════════════╝
 
 ⚠️  Restart Claude Code to pick up the new commands.

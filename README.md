@@ -4,7 +4,7 @@
 
 **AutoCode is a light-weight meta-prompting + context engineering + spec-driven development system for Claude Code, OpenCode, Gemini CLI, and Codex CLI.**
 
-**Forked from Get Shit Done (GSD) by TÂCHES (MIT).**
+**Forked from Get Shit Done by TÂCHES (MIT).**
 
 [![npm version](https://img.shields.io/npm/v/autocode-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/autocode-cc)
 [![npm downloads](https://img.shields.io/npm/dm/autocode-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/autocode-cc)
@@ -22,7 +22,7 @@ npx autocode-cc
 
 <br>
 
-![GSD Install](assets/terminal.svg)
+![AutoCode Install](assets/terminal.svg)
 
 <br>
 
@@ -44,23 +44,15 @@ npx autocode-cc
 
 ## Why I Built This
 
-I'm a solo developer. I don't write code — Claude Code does.
+AutoCode is maintained by **ApexScaleAI**.
 
-Other spec-driven development tools exist; BMAD, Speckit... But they all seem to make things way more complicated than they need to be (sprint ceremonies, story points, stakeholder syncs, retrospectives, Jira workflows) or lack real big picture understanding of what you're building. I'm not a 50-person software company. I don't want to play enterprise theater. I'm just a creative person trying to build great things that work.
-
-So I built GSD. The complexity is in the system, not in your workflow. Behind the scenes: context engineering, XML prompt formatting, subagent orchestration, state management. What you see: a few commands that just work.
-
-The system gives Claude everything it needs to do the work *and* verify it. I trust the workflow. It just does a good job.
-
-That's what this is. No enterprise roleplay bullshit. Just an incredibly effective system for building cool stuff consistently using Claude Code.
-
-— **TÂCHES**
+It’s forked from **Get Shit Done**, originally created by **TÂCHES**, and keeps the same philosophy: the complexity lives in the system (context engineering, structured prompts, state management), not in your workflow.
 
 ---
 
 Vibecoding has a bad reputation. You describe what you want, AI generates code, and you get inconsistent garbage that falls apart at scale.
 
-GSD fixes that. It's the context engineering layer that makes Claude Code reliable. Describe your idea, let the system extract everything it needs to know, and let Claude Code get to work.
+AutoCode fixes that. It's the context engineering layer that makes CLI coding agents more reliable. Describe your idea, let the system extract everything it needs to know, and let the agent get to work.
 
 ---
 
@@ -87,7 +79,7 @@ Verify inside your chosen runtime:
 
 ### Staying Updated
 
-GSD evolves fast. Update periodically:
+AutoCode evolves fast. Update periodically:
 
 ```bash
 npx autocode-cc@latest
@@ -136,14 +128,14 @@ Installs to `./.claude/` for testing modifications before contributing.
 
 ### Recommended: Skip Permissions Mode
 
-GSD is designed for frictionless automation. Run Claude Code with:
+AutoCode is designed for frictionless automation. Run Claude Code with:
 
 ```bash
 claude --dangerously-skip-permissions
 ```
 
 > [!TIP]
-> This is how GSD is intended to be used — stopping to approve `date` and `git commit` 50 times defeats the purpose.
+> This is how AutoCode is intended to be used — stopping to approve `date` and `git commit` 50 times defeats the purpose.
 
 <details>
 <summary><strong>Alternative: Granular Permissions</strong></summary>
@@ -321,7 +313,7 @@ Then `/gsd:new-milestone` starts the next version — same flow as `new-project`
 
 **For ad-hoc tasks that don't need full planning.**
 
-Quick mode gives you GSD guarantees (atomic commits, state tracking) with a faster path:
+Quick mode gives you AutoCode guarantees (atomic commits, state tracking) with a faster path:
 
 - **Same agents** — Planner + executor, same quality
 - **Skips optional steps** — No research, no plan checker, no verifier
@@ -344,7 +336,7 @@ Use for: bug fixes, small features, config changes, one-off tasks.
 
 Claude Code is incredibly powerful *if* you give it the context it needs. Most people don't.
 
-GSD handles it for you:
+AutoCode handles it for you:
 
 | File | What it does |
 |------|--------------|
@@ -442,8 +434,8 @@ You're never locked in. The system adapts.
 |---------|--------------|
 | `/gsd:progress` | Where am I? What's next? |
 | `/gsd:help` | Show all commands and usage guide |
-| `/gsd:update` | Update GSD with changelog preview |
-| `/gsd:join-discord` | Join the GSD Discord community |
+| `/gsd:update` | Update AutoCode with changelog preview |
+| `/gsd:join-discord` | Join the AutoCode Discord community |
 
 ### Brownfield
 
@@ -477,7 +469,7 @@ You're never locked in. The system adapts.
 | `/gsd:add-todo [desc]` | Capture idea for later |
 | `/gsd:check-todos` | List pending todos |
 | `/gsd:debug [desc]` | Systematic debugging with persistent state |
-| `/gsd:quick` | Execute ad-hoc task with GSD guarantees |
+| `/gsd:quick` | Execute ad-hoc task with AutoCode guarantees |
 
 <sup>¹ Contributed by reddit user OracleGreyBeard</sup>
 
@@ -485,7 +477,7 @@ You're never locked in. The system adapts.
 
 ## Configuration
 
-GSD stores project settings in `.planning/config.json`. Configure during `/gsd:new-project` or update later with `/gsd:settings`.
+AutoCode stores project settings in `.planning/config.json`. Configure during `/gsd:new-project` or update later with `/gsd:settings`.
 
 ### Core Settings
 
@@ -534,7 +526,7 @@ Use `/gsd:settings` to toggle these, or override per-invocation:
 
 ### Git Branching
 
-Control how GSD handles branches during execution.
+Control how AutoCode handles branches during execution.
 
 | Setting | Options | Default | What it does |
 |---------|---------|---------|--------------|
@@ -543,11 +535,11 @@ Control how GSD handles branches during execution.
 | `git.milestone_branch_template` | string | `gsd/{milestone}-{slug}` | Template for milestone branches |
 
 **Strategies:**
-- **`none`** — Commits to current branch (default GSD behavior)
+- **`none`** — Commits to current branch (default AutoCode behavior)
 - **`phase`** — Creates a branch per phase, merges at phase completion
 - **`milestone`** — Creates one branch for entire milestone, merges at completion
 
-At milestone completion, GSD offers squash merge (recommended) or merge with history.
+At milestone completion, AutoCode offers squash merge (recommended) or merge with history.
 
 ---
 
@@ -580,7 +572,7 @@ This ensures absolute paths are used instead of `~` which may not expand correct
 
 ### Uninstalling
 
-To remove GSD completely:
+To remove AutoCode completely:
 
 ```bash
 # Global installs
@@ -594,7 +586,7 @@ npx autocode-cc --opencode --local --uninstall
 npx autocode-cc --codex --local --uninstall
 ```
 
-This removes all GSD commands, agents, hooks, and settings while preserving your other configurations.
+This removes all AutoCode commands, agents, hooks, and settings while preserving your other configurations.
 
 ---
 
@@ -631,6 +623,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Claude Code is powerful. GSD makes it reliable.**
+**Claude Code is powerful. AutoCode makes it reliable.**
 
 </div>

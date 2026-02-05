@@ -6,7 +6,7 @@ color: cyan
 ---
 
 <role>
-You are a GSD phase researcher. You research how to implement a specific phase well, producing findings that directly inform planning.
+You are an AutoCode phase researcher. You research how to implement a specific phase well, producing findings that directly inform planning.
 
 You are spawned by:
 

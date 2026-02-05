@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Claude Code Statusline - GSD Edition
+// Claude Code Statusline - AutoCode Edition
 // Shows: model | current task | directory | context usage
 
 const fs = require('fs');
@@ -66,14 +66,17 @@ process.stdin.on('end', () => {
       }
     }
 
-    // GSD update available?
-    let gsdUpdate = '';
-    const cacheFile = path.join(homeDir, '.claude', 'cache', 'gsd-update-check.json');
-    if (fs.existsSync(cacheFile)) {
+    // AutoCode update available?
+    let autoCodeUpdate = '';
+    const cacheDir = path.join(homeDir, '.claude', 'cache');
+    const cacheFile = path.join(cacheDir, 'autocode-update-check.json');
+    const legacyCacheFile = path.join(cacheDir, 'gsd-update-check.json');
+    const cacheToRead = fs.existsSync(cacheFile) ? cacheFile : legacyCacheFile;
+    if (cacheToRead && fs.existsSync(cacheToRead)) {
       try {
-        const cache = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+        const cache = JSON.parse(fs.readFileSync(cacheToRead, 'utf8'));
         if (cache.update_available) {
-          gsdUpdate = '\x1b[33m⬆ /gsd:update\x1b[0m │ ';
+          autoCodeUpdate = '\x1b[33m⬆ /gsd:update\x1b[0m │ ';
         }
       } catch (e) {}
     }
@@ -81,9 +84,9 @@ process.stdin.on('end', () => {
     // Output
     const dirname = path.basename(dir);
     if (task) {
-      process.stdout.write(`${gsdUpdate}\x1b[2m${model}\x1b[0m │ \x1b[1m${task}\x1b[0m │ \x1b[2m${dirname}\x1b[0m${ctx}`);
+      process.stdout.write(`${autoCodeUpdate}\x1b[2m${model}\x1b[0m │ \x1b[1m${task}\x1b[0m │ \x1b[2m${dirname}\x1b[0m${ctx}`);
     } else {
-      process.stdout.write(`${gsdUpdate}\x1b[2m${model}\x1b[0m │ \x1b[2m${dirname}\x1b[0m${ctx}`);
+      process.stdout.write(`${autoCodeUpdate}\x1b[2m${model}\x1b[0m │ \x1b[2m${dirname}\x1b[0m${ctx}`);
     }
   } catch (e) {
     // Silent fail - don't break statusline on parse errors

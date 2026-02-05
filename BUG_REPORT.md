@@ -1,4 +1,4 @@
-# Bug Report - Get Shit Done Codebase Review
+# Bug Report - AutoCode Codebase Review
 
 **Date:** 2026-01-31
 **Reviewer:** Claude Code Agent

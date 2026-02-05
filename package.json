@@ -1,7 +1,7 @@
 {
   "name": "autocode-cc",
   "version": "1.11.1-autocode.1",
-  "description": "AutoCode: a meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini, and Codex (forked from GSD by TÂCHES).",
+  "description": "AutoCode: a meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini, and Codex (forked from Get Shit Done by TÂCHES).",
   "bin": {
     "autocode": "bin/install.js",
     "autocode-kanban": "bin/kanban.js",
@@ -29,7 +29,7 @@
     "codex",
     "codex-cli"
   ],
-  "author": "TÂCHES",
+  "author": "ApexScaleAI (forked from Get Shit Done by TÂCHES)",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -126,7 +126,7 @@ Template for `.planning/codebase/STRUCTURE.md` - captures physical file organiza
 get-shit-done/
 ├── bin/                # Executable entry points
 ├── commands/           # Slash command definitions
-│   └── gsd/           # GSD-specific commands
+│   └── gsd/           # AutoCode commands (legacy prefix)
 ├── get-shit-done/     # Skill resources
 │   ├── references/    # Principle documents
 │   ├── templates/     # File templates

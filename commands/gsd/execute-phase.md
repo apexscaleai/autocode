@@ -152,7 +152,7 @@ Output this markdown directly (not as a code block). Route based on status:
 **Route A: Phase verified, more phases remain**
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PHASE {Z} COMPLETE ✓
+ AUTOCODE ► PHASE {Z} COMPLETE ✓
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **Phase {Z}: {Name}**
@@ -183,7 +183,7 @@ Goal verified ✓
 **Route B: Phase verified, milestone complete**
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► MILESTONE COMPLETE 🎉
+ AUTOCODE ► MILESTONE COMPLETE 🎉
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **v1.0**
@@ -214,7 +214,7 @@ All phase goals verified ✓
 **Route C: Gaps found — need additional planning**
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PHASE {Z} GAPS FOUND ⚠
+ AUTOCODE ► PHASE {Z} GAPS FOUND ⚠
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **Phase {Z}: {Name}**

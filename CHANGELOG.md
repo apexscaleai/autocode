@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to GSD will be documented in this file.
+All notable changes to AutoCode will be documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
@@ -65,12 +65,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.9.9] - 2026-01-23
 
 ### Added
-- `/gsd:join-discord` command to quickly access the GSD Discord community invite link
+- `/gsd:join-discord` command to quickly access the AutoCode Discord community invite link
 
 ## [1.9.8] - 2025-01-22
 
 ### Added
-- Uninstall flag (`--uninstall`) to cleanly remove GSD from global or local installations
+- Uninstall flag (`--uninstall`) to cleanly remove AutoCode from global or local installations
 
 ### Fixed
 - Context file detection now matches filename variants (handles both `CONTEXT.md` and `{phase}-CONTEXT.md` patterns)
@@ -86,9 +86,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - Interactive runtime selection: installer now prompts to choose Claude Code, OpenCode, or both
-- Native OpenCode support: `--opencode` flag converts GSD to OpenCode format automatically
+- Native OpenCode support: `--opencode` flag converts AutoCode prompts to OpenCode format automatically
 - `--both` flag to install for both Claude Code and OpenCode in one command
-- Auto-configures `~/.opencode.json` permissions for seamless GSD doc access
+- Auto-configures `~/.opencode.json` permissions for seamless AutoCode doc access
 
 ### Changed
 - Installation flow now asks for runtime first, then location
@@ -153,11 +153,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.7.0] - 2026-01-19
 
 ### Added
-- **Quick Mode** (`/gsd:quick`) — Execute small, ad-hoc tasks with GSD guarantees but skip optional agents (researcher, checker, verifier). Quick tasks live in `.planning/quick/` with their own tracking in STATE.md.
+- **Quick Mode** (`/gsd:quick`) — Execute small, ad-hoc tasks with AutoCode guarantees but skip optional agents (researcher, checker, verifier). Quick tasks live in `.planning/quick/` with their own tracking in STATE.md.
 
 ### Changed
 - Improved progress bar calculation to clamp values within 0-100 range
-- Updated documentation with comprehensive Quick Mode sections in help.md, README.md, and GSD-STYLE.md
+- Updated documentation with comprehensive Quick Mode sections in help.md, README.md, and the style guide
 
 ### Fixed
 - Console window flash on Windows when running hooks
@@ -195,7 +195,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.6.1] - 2025-01-17
 
 ### Changed
-- Installer performs clean install of GSD folders, removing orphaned files from previous versions
+- Installer performs clean install of AutoCode folders, removing orphaned files from previous versions
 - `/gsd:update` shows changelog and asks for confirmation before updating, with clear warning about what gets replaced
 
 ## [1.6.0] - 2026-01-17
@@ -285,7 +285,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.5.21] - 2026-01-16
 
 ### Added
-- GSD brand system for consistent UI (checkpoint boxes, stage banners, status symbols)
+- AutoCode brand system for consistent UI (checkpoint boxes, stage banners, status symbols)
 - Research synthesizer agent that consolidates parallel research into SUMMARY.md
 
 ### Changed
@@ -919,7 +919,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `/gsd:map-codebase` command for brownfield project analysis
 - Codebase map templates (stack, architecture, structure, conventions, testing, integrations, concerns)
 - Parallel Explore agent orchestration for codebase analysis
-- Brownfield integration into GSD workflows
+- Brownfield integration into AutoCode workflows
 
 ### Changed
 - Improved continuation UI with context and visual hierarchy
@@ -1083,7 +1083,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.0.0] - 2025-12-14
 
 ### Added
-- Initial release of GSD (Get Shit Done) meta-prompting system
+- Initial upstream release of Get Shit Done meta-prompting system
 - Core slash commands: `/gsd:new-project`, `/gsd:discuss-phase`, `/gsd:plan-phase`, `/gsd:execute-phase`
 - PROJECT.md and STATE.md templates
 - Phase-based development workflow

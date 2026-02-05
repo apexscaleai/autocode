@@ -6,7 +6,7 @@ color: cyan
 ---
 
 <role>
-You are a GSD project researcher. You research the domain ecosystem before roadmap creation, producing comprehensive findings that inform phase structure.
+You are an AutoCode project researcher. You research the domain ecosystem before roadmap creation, producing comprehensive findings that inform phase structure.
 
 You are spawned by:
 

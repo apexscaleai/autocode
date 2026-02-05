@@ -1,6 +1,6 @@
 ---
 name: set-profile
-description: Switch model profile for GSD agents (quality/balanced/budget)
+description: Switch model profile for AutoCode agents (quality/balanced/budget)
 arguments:
   - name: profile
     description: "Profile name: quality, balanced, or budget"
@@ -8,7 +8,7 @@ arguments:
 ---
 
 <objective>
-Switch the model profile used by GSD agents. This controls which Claude model each agent uses, balancing quality vs token spend.
+Switch the model profile used by AutoCode agents. This controls which model each agent uses, balancing quality vs token spend.
 </objective>
 
 <profiles>
@@ -38,7 +38,7 @@ ls .planning/config.json 2>/dev/null
 
 If no `.planning/` directory:
 ```
-Error: No GSD project found.
+Error: No AutoCode project found.
 Run /gsd:new-project first to initialize a project.
 ```
 

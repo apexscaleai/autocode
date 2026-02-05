@@ -129,7 +129,7 @@ const banner = '\n' +
   '\n' +
   '  AutoCode ' + dim + 'v' + pkg.version + reset + '\n' +
   '  A meta-prompting, context engineering and spec-driven\n' +
-  '  development system for Claude Code, OpenCode, Gemini, and Codex (forked from GSD by TÂCHES).\n';
+  '  development system for Claude Code, OpenCode, Gemini, and Codex (forked from Get Shit Done by TÂCHES).\n';
 
 // Parse --config-dir argument
 function parseConfigDirArg() {
@@ -163,7 +163,7 @@ console.log(banner);
 
 // Show help if requested
 if (hasHelp) {
-  console.log(`  ${yellow}Usage:${reset} npx autocode-cc [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--codex${reset}                   Install for Codex CLI only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall (remove all AutoCode/GSD files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx autocode-cc\n\n    ${dim}# Install for Claude Code globally${reset}\n    npx autocode-cc --claude --global\n\n    ${dim}# Install for Codex globally${reset}\n    npx autocode-cc --codex --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx autocode-cc --gemini --global\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx autocode-cc --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx autocode-cc --claude --global --config-dir ~/.claude-bc\n\n    ${dim}# Install to current project only${reset}\n    npx autocode-cc --claude --local\n\n    ${dim}# Uninstall from Codex globally${reset}\n    npx autocode-cc --codex --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CLAUDE_CONFIG_DIR / GEMINI_CONFIG_DIR / CODEX_HOME environment variables.\n`);
+  console.log(`  ${yellow}Usage:${reset} npx autocode-cc [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--codex${reset}                   Install for Codex CLI only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall (remove all AutoCode-managed files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx autocode-cc\n\n    ${dim}# Install for Claude Code globally${reset}\n    npx autocode-cc --claude --global\n\n    ${dim}# Install for Codex globally${reset}\n    npx autocode-cc --codex --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx autocode-cc --gemini --global\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx autocode-cc --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx autocode-cc --claude --global --config-dir ~/.claude-bc\n\n    ${dim}# Install to current project only${reset}\n    npx autocode-cc --claude --local\n\n    ${dim}# Uninstall from Codex globally${reset}\n    npx autocode-cc --codex --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CLAUDE_CONFIG_DIR / GEMINI_CONFIG_DIR / CODEX_HOME environment variables.\n`);
   process.exit(0);
 }
 
@@ -708,7 +708,7 @@ function copyWithPathReplacement(srcDir, destDir, pathPrefix, runtime) {
 }
 
 /**
- * Clean up orphaned files from previous GSD versions
+ * Clean up orphaned files from previous AutoCode versions
  */
 function cleanupOrphanedFiles(configDir) {
   const orphanedFiles = [
@@ -783,8 +783,8 @@ function cleanupOrphanedHooks(settings) {
 }
 
 /**
- * Uninstall GSD from the specified directory for a specific runtime
- * Removes only GSD-specific files/directories, preserves user content
+ * Uninstall AutoCode from the specified directory for a specific runtime
+ * Removes only AutoCode-managed files/directories, preserves user content
  * @param {boolean} isGlobal - Whether to uninstall from global or local
  * @param {string} runtime - Target runtime ('claude', 'opencode', 'gemini')
  */
@@ -807,7 +807,7 @@ function uninstall(isGlobal, runtime = 'claude') {
   if (runtime === 'gemini') runtimeLabel = 'Gemini';
   if (runtime === 'codex') runtimeLabel = 'Codex CLI';
 
-  console.log(`  Uninstalling GSD from ${cyan}${runtimeLabel}${reset} at ${cyan}${locationLabel}${reset}\n`);
+  console.log(`  Uninstalling AutoCode from ${cyan}${runtimeLabel}${reset} at ${cyan}${locationLabel}${reset}\n`);
 
   // Check if target directory exists
   if (!fs.existsSync(targetDir)) {
@@ -828,17 +828,17 @@ function uninstall(isGlobal, runtime = 'claude') {
     }
 
     if (removedCount === 0) {
-      console.log(`  ${yellow}⚠${reset} No GSD files found to remove.`);
+      console.log(`  ${yellow}⚠${reset} No AutoCode files found to remove.`);
     }
 
     console.log(`
-  ${green}Done!${reset} GSD has been uninstalled from ${runtimeLabel}.
+  ${green}Done!${reset} AutoCode has been uninstalled from ${runtimeLabel}.
   Your other files and settings have been preserved.
 `);
     return;
   }
 
-  // 1. Remove GSD commands directory
+  // 1. Remove AutoCode commands directory
   if (isOpencode) {
     // OpenCode: remove command/gsd-*.md files
     const commandDir = path.join(targetDir, 'command');
@@ -850,7 +850,7 @@ function uninstall(isGlobal, runtime = 'claude') {
           removedCount++;
         }
       }
-      console.log(`  ${green}✓${reset} Removed GSD commands from command/`);
+      console.log(`  ${green}✓${reset} Removed AutoCode commands from command/`);
     }
   } else {
     // Claude Code & Gemini: remove commands/gsd/ directory
@@ -862,7 +862,7 @@ function uninstall(isGlobal, runtime = 'claude') {
     }
   }
 
-  // 2. Remove get-shit-done directory
+  // 2. Remove get-shit-done directory (AutoCode system content)
   const gsdDir = path.join(targetDir, 'get-shit-done');
   if (fs.existsSync(gsdDir)) {
     fs.rmSync(gsdDir, { recursive: true });
@@ -870,7 +870,7 @@ function uninstall(isGlobal, runtime = 'claude') {
     console.log(`  ${green}✓${reset} Removed get-shit-done/`);
   }
 
-  // 3. Remove GSD agents (gsd-*.md files only)
+  // 3. Remove AutoCode agents (gsd-*.md files only)
   const agentsDir = path.join(targetDir, 'agents');
   if (fs.existsSync(agentsDir)) {
     const files = fs.readdirSync(agentsDir);
@@ -883,11 +883,11 @@ function uninstall(isGlobal, runtime = 'claude') {
     }
     if (agentCount > 0) {
       removedCount++;
-      console.log(`  ${green}✓${reset} Removed ${agentCount} GSD agents`);
+      console.log(`  ${green}✓${reset} Removed ${agentCount} AutoCode agents`);
     }
   }
 
-  // 4. Remove GSD hooks
+  // 4. Remove AutoCode hooks
   const hooksDir = path.join(targetDir, 'hooks');
   if (fs.existsSync(hooksDir)) {
     const gsdHooks = ['gsd-statusline.js', 'gsd-check-update.js', 'gsd-check-update.sh'];
@@ -901,30 +901,30 @@ function uninstall(isGlobal, runtime = 'claude') {
     }
     if (hookCount > 0) {
       removedCount++;
-      console.log(`  ${green}✓${reset} Removed ${hookCount} GSD hooks`);
+      console.log(`  ${green}✓${reset} Removed ${hookCount} AutoCode hooks`);
     }
   }
 
-  // 5. Clean up settings.json (remove GSD hooks and statusline)
+  // 5. Clean up settings.json (remove AutoCode hooks and statusline)
   const settingsPath = path.join(targetDir, 'settings.json');
   if (fs.existsSync(settingsPath)) {
     let settings = readSettings(settingsPath);
     let settingsModified = false;
 
-    // Remove GSD statusline if it references our hook
+    // Remove AutoCode statusline if it references our hook
     if (settings.statusLine && settings.statusLine.command &&
         settings.statusLine.command.includes('gsd-statusline')) {
       delete settings.statusLine;
       settingsModified = true;
-      console.log(`  ${green}✓${reset} Removed GSD statusline from settings`);
+      console.log(`  ${green}✓${reset} Removed AutoCode statusline from settings`);
     }
 
-    // Remove GSD hooks from SessionStart
+    // Remove AutoCode hooks from SessionStart
     if (settings.hooks && settings.hooks.SessionStart) {
       const before = settings.hooks.SessionStart.length;
       settings.hooks.SessionStart = settings.hooks.SessionStart.filter(entry => {
         if (entry.hooks && Array.isArray(entry.hooks)) {
-          // Filter out GSD hooks
+          // Filter out AutoCode hooks
           const hasGsdHook = entry.hooks.some(h =>
             h.command && (h.command.includes('gsd-check-update') || h.command.includes('gsd-statusline'))
           );
@@ -934,7 +934,7 @@ function uninstall(isGlobal, runtime = 'claude') {
       });
       if (settings.hooks.SessionStart.length < before) {
         settingsModified = true;
-        console.log(`  ${green}✓${reset} Removed GSD hooks from settings`);
+        console.log(`  ${green}✓${reset} Removed AutoCode hooks from settings`);
       }
       // Clean up empty array
       if (settings.hooks.SessionStart.length === 0) {
@@ -961,7 +961,7 @@ function uninstall(isGlobal, runtime = 'claude') {
         const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         let modified = false;
 
-        // Remove GSD permission entries
+        // Remove AutoCode permission entries
         if (config.permission) {
           for (const permType of ['read', 'external_directory']) {
             if (config.permission[permType]) {
@@ -986,7 +986,7 @@ function uninstall(isGlobal, runtime = 'claude') {
         if (modified) {
           fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
           removedCount++;
-          console.log(`  ${green}✓${reset} Removed GSD permissions from opencode.json`);
+          console.log(`  ${green}✓${reset} Removed AutoCode permissions from opencode.json`);
         }
       } catch (e) {
         // Ignore JSON parse errors
@@ -995,18 +995,18 @@ function uninstall(isGlobal, runtime = 'claude') {
   }
 
   if (removedCount === 0) {
-    console.log(`  ${yellow}⚠${reset} No GSD files found to remove.`);
+    console.log(`  ${yellow}⚠${reset} No AutoCode files found to remove.`);
   }
 
   console.log(`
-  ${green}Done!${reset} GSD has been uninstalled from ${runtimeLabel}.
+  ${green}Done!${reset} AutoCode has been uninstalled from ${runtimeLabel}.
   Your other files and settings have been preserved.
 `);
 }
 
 /**
- * Configure OpenCode permissions to allow reading GSD reference docs
- * This prevents permission prompts when GSD accesses the get-shit-done directory
+ * Configure OpenCode permissions to allow reading AutoCode reference docs
+ * This prevents permission prompts when AutoCode accesses the get-shit-done directory
  */
 function configureOpencodePermissions() {
   // OpenCode config file is at ~/.config/opencode/opencode.json
@@ -1032,7 +1032,7 @@ function configureOpencodePermissions() {
     config.permission = {};
   }
 
-  // Build the GSD path using the actual config directory
+  // Build the AutoCode path using the actual config directory
   // Use ~ shorthand if it's in the default location, otherwise use full path
   const defaultConfigDir = path.join(os.homedir(), '.config', 'opencode');
   const gsdPath = opencodeConfigDir === defaultConfigDir
@@ -1065,7 +1065,7 @@ function configureOpencodePermissions() {
 
   // Write config back
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
-  console.log(`  ${green}✓${reset} Configured read permission for GSD docs`);
+  console.log(`  ${green}✓${reset} Configured read permission for AutoCode docs`);
 }
 
 /**
@@ -1275,7 +1275,7 @@ function install(isGlobal, runtime = 'claude') {
     const agentsDest = path.join(targetDir, 'agents');
     fs.mkdirSync(agentsDest, { recursive: true });
 
-    // Remove old GSD agents (gsd-*.md) before copying new ones
+    // Remove old AutoCode agents (gsd-*.md) before copying new ones
     if (fs.existsSync(agentsDest)) {
       for (const file of fs.readdirSync(agentsDest)) {
         if (file.startsWith('gsd-') && file.endsWith('.md')) {
@@ -1407,21 +1407,21 @@ function install(isGlobal, runtime = 'claude') {
 }
 
 /**
- * Write the Codex skill definition for GSD.
- * The actual GSD system prompts and references are copied into this skill directory.
+ * Write the Codex skill definition for AutoCode.
+ * The actual AutoCode system prompts and references are copied into this skill directory.
  */
 function writeCodexSkill(skillDir) {
   const skill = [
     '---',
     'name: gsd',
-    'description: Spec-driven development workflows (Get Shit Done) for Codex CLI. Uses .planning/ state files to plan, execute, and verify work.',
+    'description: Spec-driven development workflows (AutoCode) for Codex CLI. Uses .planning/ state files to plan, execute, and verify work.',
     'metadata:',
-    '  short-description: GSD project workflow',
+    '  short-description: AutoCode project workflow',
     '---',
     '',
-    '# Get Shit Done (GSD)',
+    '# AutoCode',
     '',
-    'This installs GSD as a Codex Skill. It’s a lightweight spec-driven development system that creates and maintains project state in `.planning/` and guides you through planning → execution → verification.',
+    'This installs AutoCode as a Codex Skill. It’s a lightweight spec-driven development system that creates and maintains project state in `.planning/` and guides you through planning → execution → verification.',
     '',
     '## How to Use',
     '',
@@ -1452,13 +1452,13 @@ function writeCodexSkill(skillDir) {
     '',
     '## What’s Bundled In This Skill',
     '',
-    '- `commands/gsd/`: the original GSD command prompts (used as the source of truth)',
+    '- `commands/gsd/`: the original prompts (used as the source of truth)',
     '- `get-shit-done/`: workflows, references, and templates',
     '- `agents/`: role prompts (planner/executor/verifier/researcher)',
     '',
     '## Codex Adaptation Rules',
     '',
-    'GSD was authored for Claude Code/OpenCode/Gemini. When following the command prompts:',
+    'These prompts were authored for Claude Code/OpenCode/Gemini. When following the command prompts:',
     '',
     '- Treat `AskUserQuestion` as “ask the user a multiple-choice question inline”.',
     '- Treat `Task(...)` sub-agent spawning as “do that work yourself”, and when “parallel” is requested, do it sequentially but keep outputs clearly separated.',
@@ -1564,13 +1564,13 @@ function handleStatusline(settings, isInteractive, callback) {
   Your current statusline:
     ${dim}command: ${existingCmd}${reset}
 
-  GSD includes a statusline showing:
+  AutoCode includes a statusline showing:
     • Model name
     • Current task (from todo list)
     • Context window usage (color-coded)
 
   ${cyan}1${reset}) Keep existing
-  ${cyan}2${reset}) Replace with GSD statusline
+  ${cyan}2${reset}) Replace with AutoCode statusline
 `);
 
   rl.question(`  Choice ${dim}[1]${reset}: `, (answer) => {
@@ -1670,7 +1670,7 @@ function promptLocation(runtimes) {
 }
 
 /**
- * Install GSD for all selected runtimes
+ * Install AutoCode for all selected runtimes
  */
 function installAllRuntimes(runtimes, isGlobal, isInteractive) {
   const results = [];

@@ -1,4 +1,4 @@
-# Contributing to Get Shit Done
+# Contributing to AutoCode
 
 No enterprise theater. Ship useful code.
 
@@ -6,7 +6,7 @@ No enterprise theater. Ship useful code.
 
 ## Philosophy
 
-GSD optimizes for **solo developer + Claude workflow**. The release process follows the same principle: complexity lives in automation, not your workflow.
+AutoCode optimizes for **solo developer + CLI agent workflow**. The release process follows the same principle: complexity lives in automation, not your workflow.
 
 **What this means:**
 - No sprint ceremonies or release committees
@@ -242,7 +242,7 @@ fix(install): use absolute paths on Windows
 
 ### Review Checklist
 
-- [ ] Follows GSD style (no enterprise patterns, no filler)
+- [ ] Follows AutoCode style (no enterprise patterns, no filler)
 - [ ] Updates CHANGELOG.md for user-facing changes
 - [ ] Doesn't add unnecessary dependencies
 - [ ] Works on Windows (test paths with backslashes)
@@ -251,7 +251,7 @@ fix(install): use absolute paths on Windows
 
 ## What NOT to Do
 
-Borrowed from GSD-STYLE.md:
+Borrowed from the upstream style guide:
 
 **Enterprise Patterns (Banned):**
 - Story points

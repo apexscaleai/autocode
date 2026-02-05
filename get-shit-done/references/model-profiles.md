@@ -1,6 +1,6 @@
 # Model Profiles
 
-Model profiles control which Claude model each GSD agent uses. This allows balancing quality vs token spend.
+Model profiles control which model each AutoCode agent uses. This allows balancing quality vs token spend.
 
 ## Profile Definitions
 

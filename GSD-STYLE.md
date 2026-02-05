@@ -1,12 +1,12 @@
-# GSD-STYLE.md
+# AutoCode Style Guide
 
 > **Comprehensive reference.** Core rules auto-load from `.claude/rules/`. This document provides deep explanations and examples for when you need the full picture.
 
-This document explains how GSD is written so future Claude instances can contribute consistently.
+This document explains how AutoCode is written so future agent instances can contribute consistently.
 
 ## Core Philosophy
 
-GSD is a **meta-prompting system** where every file is both implementation and specification. Files teach Claude how to build software systematically. The system optimizes for:
+AutoCode is a **meta-prompting system** where every file is both implementation and specification. Files teach the agent how to build software systematically. The system optimizes for:
 
 - **Solo developer + Claude workflow** (no enterprise patterns)
 - **Context engineering** (manage Claude's context window deliberately)
@@ -389,7 +389,7 @@ Depth setting controls compression tolerance:
 
 ## Quick Mode Patterns
 
-Quick mode provides GSD guarantees for ad-hoc tasks without full planning overhead.
+Quick mode provides AutoCode guarantees for ad-hoc tasks without full planning overhead.
 
 ### When to Use Quick Mode
 

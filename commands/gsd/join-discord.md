@@ -1,16 +1,16 @@
 ---
 name: gsd:join-discord
-description: Join the GSD Discord community
+description: Join the AutoCode Discord community
 ---
 
 <objective>
-Display the Discord invite link for the GSD community server.
+Display the Discord invite link for the AutoCode community server.
 </objective>
 
 <output>
-# Join the GSD Discord
+# Join the AutoCode Discord
 
-Connect with other GSD users, get help, share what you're building, and stay updated.
+Connect with other AutoCode users, get help, share what you're building, and stay updated.
 
 **Invite link:** https://discord.gg/5JJgD5svVS
 

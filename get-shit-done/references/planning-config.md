@@ -70,7 +70,7 @@ fi
 - Add `--no-ignore` to broad rg searches that should include `.planning/`
 - Only needed when searching entire repo and expecting `.planning/` matches
 
-**Note:** Most GSD operations use direct file reads or explicit paths, which work regardless of gitignore status.
+**Note:** Most AutoCode operations use direct file reads or explicit paths, which work regardless of gitignore status.
 
 </search_behavior>
 
@@ -111,7 +111,7 @@ To use uncommitted mode:
 
 **When `git.branching_strategy: "none"` (default):**
 - All work commits to current branch
-- Standard GSD behavior
+- Standard AutoCode behavior
 
 **When `git.branching_strategy: "phase"`:**
 - `execute-phase` creates/switches to a branch before execution

@@ -3,13 +3,14 @@
     <style>
       .bg { fill: #1a1b26; }
       .logo { font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Courier New', monospace; fill: #7dcfff; }
+      .label { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #c0caf5; letter-spacing: 0.16em; }
     </style>
   </defs>
 
   <!-- Background -->
   <rect class="bg" width="2000" height="2000"/>
 
-  <!-- GSD ASCII Logo - centered -->
+  <!-- AutoCode ASCII Logo - centered -->
   <g transform="translate(1000, 1000)">
     <text class="logo" font-size="108" text-anchor="middle" y="-225" xml:space="preserve">  ██████╗ ███████╗██████╗ </text>
     <text class="logo" font-size="108" text-anchor="middle" y="-105" xml:space="preserve"> ██╔════╝ ██╔════╝██╔══██╗</text>
@@ -17,5 +18,6 @@
     <text class="logo" font-size="108" text-anchor="middle" y="135" xml:space="preserve"> ██║   ██║╚════██║██║  ██║</text>
     <text class="logo" font-size="108" text-anchor="middle" y="255" xml:space="preserve"> ╚██████╔╝███████║██████╔╝</text>
     <text class="logo" font-size="108" text-anchor="middle" y="375" xml:space="preserve">  ╚═════╝ ╚══════╝╚═════╝ </text>
+    <text class="label" font-size="92" text-anchor="middle" y="560">AUTOCODE</text>
   </g>
 </svg>

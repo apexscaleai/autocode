@@ -1,10 +1,10 @@
 ---
 name: gsd:help
-description: Show available GSD commands and usage guide
+description: Show available AutoCode commands and usage guide
 ---
 
 <objective>
-Display the complete GSD command reference.
+Display the complete AutoCode command reference.
 
 Output ONLY the reference content below. Do NOT add:
 
@@ -15,9 +15,9 @@ Output ONLY the reference content below. Do NOT add:
   </objective>
 
 <reference>
-# GSD Command Reference
+# AutoCode Command Reference
 
-**GSD** (Get Shit Done) creates hierarchical project plans optimized for solo agentic development with Claude Code.
+**AutoCode** creates hierarchical project plans optimized for solo agentic development with CLI coding agents.
 
 ## Quick Start
 
@@ -27,7 +27,7 @@ Output ONLY the reference content below. Do NOT add:
 
 ## Staying Updated
 
-GSD evolves fast. Update periodically:
+AutoCode evolves fast. Update periodically:
 
 ```bash
 npx autocode-cc@latest
@@ -126,7 +126,7 @@ Usage: `/gsd:execute-phase 5`
 ### Quick Mode
 
 **`/gsd:quick`**
-Execute small, ad-hoc tasks with GSD guarantees but skip optional agents.
+Execute small, ad-hoc tasks with AutoCode guarantees but skip optional agents.
 
 Quick mode uses the same system with a shorter path:
 - Spawns planner + executor (skips researcher, checker, verifier)
@@ -322,7 +322,7 @@ Configure workflow toggles and model profile interactively.
 Usage: `/gsd:settings`
 
 **`/gsd:set-profile <profile>`**
-Quick switch model profile for GSD agents.
+Quick switch model profile for AutoCode agents.
 
 - `quality` — Opus everywhere except verification
 - `balanced` — Opus for planning, Sonnet for execution (default)
@@ -336,7 +336,7 @@ Usage: `/gsd:set-profile budget`
 Show this command reference.
 
 **`/gsd:update`**
-Update GSD to latest version with changelog preview.
+Update AutoCode to latest version with changelog preview.
 
 - Shows installed vs latest version comparison
 - Displays changelog entries for versions you've missed
@@ -347,10 +347,10 @@ Update GSD to latest version with changelog preview.
 Usage: `/gsd:update`
 
 **`/gsd:join-discord`**
-Join the GSD Discord community.
+Join the AutoCode Discord community.
 
 - Get help, share what you're building, stay updated
-- Connect with other GSD users
+- Connect with other AutoCode users
 
 Usage: `/gsd:join-discord`
 

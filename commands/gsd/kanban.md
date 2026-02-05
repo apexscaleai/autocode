@@ -1,6 +1,6 @@
 ---
 name: gsd:kanban
-description: Launch a visual Kanban board for GSD todos
+description: Launch a visual Kanban board for AutoCode todos
 allowed-tools:
   - Bash
 ---
@@ -28,4 +28,3 @@ node ~/.claude/get-shit-done/tools/kanban.js --port 4444
 ```
 
 </process>
-

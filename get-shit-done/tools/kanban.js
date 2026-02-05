@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AutoCode Kanban — lightweight visual board for GSD todos.
+ * AutoCode Kanban — lightweight visual board for AutoCode todos.
  *
  * Reads:
  *   .planning/todos/pending/*.md
@@ -459,4 +459,3 @@ if (require.main === module) {
     process.exitCode = 1;
   });
 }
-
