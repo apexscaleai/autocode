@@ -708,6 +708,53 @@ function copyWithPathReplacement(srcDir, destDir, pathPrefix, runtime) {
 }
 
 /**
+ * Rewrite copied markdown content for Codex CLI.
+ * Codex doesn't support slash commands like /ac:help, so we prefer $ac help.
+ * We apply this only inside the installed skill directory (not in the repo source).
+ */
+function rewriteCodexSkillText(skillDir) {
+  const targets = [
+    path.join(skillDir, 'commands'),
+    path.join(skillDir, 'autocode')
+  ];
+
+  const rewrite = (input) => {
+    let out = input;
+
+    // Program naming
+    out = out.replace(/\bClaude Code\b/g, 'Codex CLI');
+    out = out.replace(/\bRestart Claude Code\b/g, 'Restart Codex');
+    out = out.replace(/\bLaunch Claude Code\b/g, 'Launch Codex');
+
+    // Slash commands → Codex skill invocation
+    // Example: /ac:plan-phase 1 -> $ac plan-phase 1
+    out = out.replace(/\/ac:([a-z0-9-]+)/g, '$ac $1');
+    // Example: /ac:<command> -> $ac <command>
+    out = out.replace(/\/ac:</g, '$ac <');
+
+    return out;
+  };
+
+  const walk = (dir) => {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(p);
+      } else if (entry.isFile() && p.endsWith('.md')) {
+        const before = fs.readFileSync(p, 'utf8');
+        const after = rewrite(before);
+        if (after !== before) {
+          fs.writeFileSync(p, after);
+        }
+      }
+    }
+  };
+
+  for (const dir of targets) walk(dir);
+}
+
+/**
  * Clean up orphaned files from previous AutoCode versions
  */
 function cleanupOrphanedFiles(configDir) {
@@ -1246,6 +1293,9 @@ function install(isGlobal, runtime = 'claude') {
     } else {
       failures.push('VERSION');
     }
+
+    // Rewrite command/docs text to match Codex UX ($ac ... instead of /ac:...)
+    rewriteCodexSkillText(acSkillDir);
 
     if (failures.length > 0) {
       console.error(`\n  ${yellow}Installation incomplete!${reset} Failed: ${failures.join(', ')}`);
