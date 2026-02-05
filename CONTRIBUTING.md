@@ -32,7 +32,7 @@ main ═════════════════════════
 
 ### `main`
 
-Production. Always installable via `npx autocode-cc`.
+Production. Always installable via `npx autocode-ac`.
 
 | Rule | Why |
 |------|-----|
@@ -142,7 +142,7 @@ git tag -a v1.10.0-beta.1 -m "Beta: codebase intelligence stabilized"
 git tag -a v1.10.0 -m "Release: codebase intelligence"
 ```
 
-Users opt-in: `npm install autocode-cc@1.11.1-autocode.1-alpha.1`
+Users opt-in: `npm install autocode-ac@1.11.1-autocode.1-alpha.1`
 
 **If it doesn't work out:** Delete pre-release tags, no messy public revert on main.
 
@@ -171,7 +171,7 @@ npm publish
 Create formal releases for minor+ versions. Copy the CHANGELOG section.
 
 ```
-Go to: github.com/glittercowboy/get-shit-done/releases/new
+Go to: github.com/apexscaleai/autocode/releases/new
 Select tag: v1.10.0
 Title: v1.10.0
 Description: [paste from CHANGELOG.md]
@@ -302,15 +302,15 @@ Exception: CHANGELOG.md, MIGRATION.md, git commits
 
 ```bash
 # Clone
-git clone https://github.com/glittercowboy/get-shit-done.git
-cd get-shit-done
+git clone https://github.com/apexscaleai/autocode.git
+cd autocode
 
 # Install
 npm install
 
 # Test locally
 npm link
-npx autocode-cc
+npx autocode-ac
 
 # Run tests
 npm test

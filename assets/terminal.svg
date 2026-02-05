@@ -38,31 +38,26 @@
     <!-- Prompt line -->
     <text class="text prompt" font-size="15" y="0">~</text>
     <text class="text dim" font-size="15" x="16" y="0">$</text>
-    <text class="text command" font-size="15" x="36" y="0">npx autocode-cc</text>
+    <text class="text command" font-size="15" x="36" y="0">npx autocode-ac</text>
 
     <!-- Banner -->
-    <text class="text cyan" font-size="14" y="48" xml:space="preserve">   ██████╗ ███████╗██████╗</text>
-    <text class="text cyan" font-size="14" y="68" xml:space="preserve">  ██╔════╝ ██╔════╝██╔══██╗</text>
-    <text class="text cyan" font-size="14" y="88" xml:space="preserve">  ██║  ███╗███████╗██║  ██║</text>
-    <text class="text cyan" font-size="14" y="108" xml:space="preserve">  ██║   ██║╚════██║██║  ██║</text>
-    <text class="text cyan" font-size="14" y="128" xml:space="preserve">  ╚██████╔╝███████║██████╔╝</text>
-    <text class="text cyan" font-size="14" y="148" xml:space="preserve">   ╚═════╝ ╚══════╝╚═════╝</text>
+    <text class="text cyan" font-size="44" y="88">AUTOCODE</text>
 
     <!-- Title and subtitle -->
-    <text class="text white" font-size="15" y="188">  AutoCode <tspan class="dim">v1.11.1-autocode.1</tspan></text>
-    <text class="text white" font-size="15" y="212">  A meta-prompting, context engineering and spec-driven</text>
-    <text class="text white" font-size="15" y="232">  development system by ApexScaleAI (forked from Get Shit Done).</text>
+    <text class="text white" font-size="15" y="140">  AutoCode <tspan class="dim">v1.11.1-autocode.1</tspan></text>
+    <text class="text white" font-size="15" y="164">  A meta-prompting, context engineering and spec-driven</text>
+    <text class="text white" font-size="15" y="184">  development system by ApexScaleAI (forked from Get Shit Done).</text>
 
     <!-- Install output -->
-    <text class="text" font-size="15" y="280"><tspan class="green">  ✓</tspan><tspan class="white"> Installed AutoCode commands</tspan></text>
-    <text class="text" font-size="15" y="304"><tspan class="green">  ✓</tspan><tspan class="white"> Installed AutoCode system prompts</tspan></text>
+    <text class="text" font-size="15" y="232"><tspan class="green">  ✓</tspan><tspan class="white"> Installed AutoCode commands</tspan></text>
+    <text class="text" font-size="15" y="256"><tspan class="green">  ✓</tspan><tspan class="white"> Installed AutoCode system prompts</tspan></text>
 
     <!-- Done message -->
-    <text class="text" font-size="15" y="352"><tspan class="green">  Done!</tspan><tspan class="white"> Run </tspan><tspan class="cyan">/gsd:help</tspan><tspan class="white"> to get started.</tspan></text>
+    <text class="text" font-size="15" y="304"><tspan class="green">  Done!</tspan><tspan class="white"> Run </tspan><tspan class="cyan">/ac:help</tspan><tspan class="white"> to get started.</tspan></text>
 
     <!-- New prompt -->
-    <text class="text prompt" font-size="15" y="400">~</text>
-    <text class="text dim" font-size="15" x="16" y="400">$</text>
-    <text class="text white" font-size="15" x="36" y="400">▌</text>
+    <text class="text prompt" font-size="15" y="352">~</text>
+    <text class="text dim" font-size="15" x="16" y="352">$</text>
+    <text class="text white" font-size="15" x="36" y="352">▌</text>
   </g>
 </svg>

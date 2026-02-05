@@ -11,15 +11,16 @@ const DIST_DIR = path.join(HOOKS_DIR, 'dist');
 
 // Hooks to copy (pure Node.js, no bundling needed)
 const HOOKS_TO_COPY = [
-  'gsd-check-update.js',
-  'gsd-statusline.js'
+  'ac-check-update.js',
+  'ac-statusline.js'
 ];
 
 function build() {
-  // Ensure dist directory exists
-  if (!fs.existsSync(DIST_DIR)) {
-    fs.mkdirSync(DIST_DIR, { recursive: true });
+  // Clean dist directory to avoid publishing legacy hooks
+  if (fs.existsSync(DIST_DIR)) {
+    fs.rmSync(DIST_DIR, { recursive: true, force: true });
   }
+  fs.mkdirSync(DIST_DIR, { recursive: true });
 
   // Copy hooks to dist
   for (const hook of HOOKS_TO_COPY) {

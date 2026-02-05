@@ -7,7 +7,7 @@ Quick reference for release workflows and maintenance tasks.
 ### Standard Release
 
 ```bash
-/gsd-publish-version
+/ac-publish-version
 ```
 
 The command walks you through:
@@ -73,7 +73,7 @@ Follow [Keep a Changelog](https://keepachangelog.com/):
 ## [1.10.0] - 2025-01-22
 
 ### Added
-- New `/gsd:whats-new` command
+- New `/ac:whats-new` command
 
 ### Changed
 - Improved parallel execution
@@ -100,7 +100,7 @@ The codebase intelligence system was removed partly because sql.js added 21MB.
 
 Within 72 hours:
 ```bash
-npm unpublish autocode-cc@1.11.1-autocode.1
+npm unpublish autocode-ac@1.11.1-autocode.1
 ```
 
 After 72 hours: Publish a fix as new patch version.

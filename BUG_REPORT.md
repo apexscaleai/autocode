@@ -10,7 +10,7 @@
 
 ### 1. Missing error handling in statusline.js for file system operations
 
-**File:** `hooks/gsd-statusline.js:51-54`
+**File:** `hooks/ac-statusline.js:51-54`
 **Severity:** High
 **Type:** Runtime error / crash
 
@@ -56,10 +56,10 @@ if (session && fs.existsSync(todosDir)) {
 ### 2. Fragile JSON parsing in bash workflows
 
 **Files:**
-- `get-shit-done/workflows/execute-phase.md:20`
-- `commands/gsd/execute-phase.md:45`
-- `get-shit-done/workflows/execute-phase.md:62`
-- `agents/gsd-executor.md:47`
+- `autocode/workflows/execute-phase.md:20`
+- `commands/ac/execute-phase.md:45`
+- `autocode/workflows/execute-phase.md:62`
+- `agents/ac-executor.md:47`
 
 **Severity:** High
 **Type:** Logic error / silent failure
@@ -93,7 +93,7 @@ COMMIT_PLANNING_DOCS=$(jq -r '.commit_docs // true' .planning/config.json 2>/dev
 
 BRANCHING_STRATEGY=$(jq -r '.branching_strategy // "none"' .planning/config.json 2>/dev/null || echo "none")
 
-PHASE_BRANCH_TEMPLATE=$(jq -r '.phase_branch_template // "gsd/phase-{phase}-{slug}"' .planning/config.json 2>/dev/null || echo "gsd/phase-{phase}-{slug}")
+PHASE_BRANCH_TEMPLATE=$(jq -r '.phase_branch_template // "ac/phase-{phase}-{slug}"' .planning/config.json 2>/dev/null || echo "ac/phase-{phase}-{slug}")
 ```
 
 **Impact:**
@@ -103,7 +103,7 @@ Without this fix, configuration settings may silently fall back to defaults even
 
 ### 3. Violation of stated git commit rules
 
-**File:** `commands/gsd/execute-phase.md:94`
+**File:** `commands/ac/execute-phase.md:94`
 **Severity:** Medium
 **Type:** Inconsistency with documented rules
 
@@ -165,7 +165,7 @@ Add validation for hex color format:
 
 ### 5. Potential issue with branch variable expansion
 
-**File:** `get-shit-done/workflows/execute-phase.md:100-103`
+**File:** `autocode/workflows/execute-phase.md:100-103`
 **Severity:** Low
 **Type:** Shell safety
 
@@ -185,7 +185,7 @@ Ensure all variable expansions are properly quoted, especially in sed operations
 
 ### 6. Missing CONTEXT.md reference documentation
 
-**File:** `agents/gsd-executor.md:69`
+**File:** `agents/ac-executor.md:69`
 **Severity:** Low
 **Type:** Documentation gap
 
@@ -238,8 +238,8 @@ Establish consistent error handling patterns across the codebase, especially for
 Paths like `~/.claude/`, `.planning/`, etc. are hardcoded in many places. Changes to directory structure would require updates in multiple files.
 
 **Examples:**
-- `hooks/gsd-statusline.js:49` - hardcoded `~/.claude/todos`
-- `hooks/gsd-check-update.js:12` - hardcoded `~/.claude/`
+- `hooks/ac-statusline.js:49` - hardcoded `~/.claude/todos`
+- `hooks/ac-check-update.js:12` - hardcoded `~/.claude/`
 - Multiple workflow files reference `.planning/`
 
 **Recommendation:**

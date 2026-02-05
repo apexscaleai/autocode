@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const { main } = require(path.join(__dirname, '..', 'get-shit-done', 'tools', 'kanban.js'));
+const { main } = require(path.join(__dirname, '..', 'autocode', 'tools', 'kanban.js'));
 
 main(process.argv).catch((err) => {
   // eslint-disable-next-line no-console

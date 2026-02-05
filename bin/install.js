@@ -120,12 +120,12 @@ function getGlobalDir(runtime, explicitDir = null) {
 }
 
 const banner = '\n' +
-  cyan + '   ██████╗ ███████╗██████╗\n' +
-  '  ██╔════╝ ██╔════╝██╔══██╗\n' +
-  '  ██║  ███╗███████╗██║  ██║\n' +
-  '  ██║   ██║╚════██║██║  ██║\n' +
-  '  ╚██████╔╝███████║██████╔╝\n' +
-  '   ╚═════╝ ╚══════╝╚═════╝' + reset + '\n' +
+  cyan + '   █████╗  ██████╗\n' +
+  '  ██╔══██╗██╔════╝\n' +
+  '  ███████║██║\n' +
+  '  ██╔══██║██║\n' +
+  '  ██║  ██║╚██████╗\n' +
+  '  ╚═╝  ╚═╝ ╚═════╝' + reset + '\n' +
   '\n' +
   '  AutoCode ' + dim + 'v' + pkg.version + reset + '\n' +
   '  A meta-prompting, context engineering and spec-driven\n' +
@@ -163,7 +163,7 @@ console.log(banner);
 
 // Show help if requested
 if (hasHelp) {
-  console.log(`  ${yellow}Usage:${reset} npx autocode-cc [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--codex${reset}                   Install for Codex CLI only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall (remove all AutoCode-managed files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx autocode-cc\n\n    ${dim}# Install for Claude Code globally${reset}\n    npx autocode-cc --claude --global\n\n    ${dim}# Install for Codex globally${reset}\n    npx autocode-cc --codex --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx autocode-cc --gemini --global\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx autocode-cc --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx autocode-cc --claude --global --config-dir ~/.claude-bc\n\n    ${dim}# Install to current project only${reset}\n    npx autocode-cc --claude --local\n\n    ${dim}# Uninstall from Codex globally${reset}\n    npx autocode-cc --codex --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CLAUDE_CONFIG_DIR / GEMINI_CONFIG_DIR / CODEX_HOME environment variables.\n`);
+  console.log(`  ${yellow}Usage:${reset} npx autocode-ac [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--codex${reset}                   Install for Codex CLI only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall (remove all AutoCode-managed files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx autocode-ac\n\n    ${dim}# Install for Claude Code globally${reset}\n    npx autocode-ac --claude --global\n\n    ${dim}# Install for Codex globally${reset}\n    npx autocode-ac --codex --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx autocode-ac --gemini --global\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx autocode-ac --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx autocode-ac --claude --global --config-dir ~/.claude-bc\n\n    ${dim}# Install to current project only${reset}\n    npx autocode-ac --claude --local\n\n    ${dim}# Uninstall from Codex globally${reset}\n    npx autocode-ac --codex --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CLAUDE_CONFIG_DIR / GEMINI_CONFIG_DIR / CODEX_HOME environment variables.\n`);
   process.exit(0);
 }
 
@@ -460,8 +460,8 @@ function convertClaudeToOpencodeFrontmatter(content) {
   convertedContent = convertedContent.replace(/\bAskUserQuestion\b/g, 'question');
   convertedContent = convertedContent.replace(/\bSlashCommand\b/g, 'skill');
   convertedContent = convertedContent.replace(/\bTodoWrite\b/g, 'todowrite');
-  // Replace /gsd:command with /gsd-command for opencode (flat command structure)
-  convertedContent = convertedContent.replace(/\/gsd:/g, '/gsd-');
+  // Replace /ac:command with /ac-command for opencode (flat command structure)
+  convertedContent = convertedContent.replace(/\/ac:/g, '/ac-');
   // Replace ~/.claude with ~/.config/opencode (OpenCode's correct config location)
   convertedContent = convertedContent.replace(/~\/\.claude\b/g, '~/.config/opencode');
 
@@ -601,12 +601,12 @@ function convertClaudeToGeminiToml(content) {
 
 /**
  * Copy commands to a flat structure for OpenCode
- * OpenCode expects: command/gsd-help.md (invoked as /gsd-help)
- * Source structure: commands/gsd/help.md
+ * OpenCode expects: command/ac-help.md (invoked as /ac-help)
+ * Source structure: commands/ac/help.md
  * 
- * @param {string} srcDir - Source directory (e.g., commands/gsd/)
+ * @param {string} srcDir - Source directory (e.g., commands/ac/)
  * @param {string} destDir - Destination directory (e.g., command/)
- * @param {string} prefix - Prefix for filenames (e.g., 'gsd')
+ * @param {string} prefix - Prefix for filenames (e.g., 'ac')
  * @param {string} pathPrefix - Path prefix for file references
  * @param {string} runtime - Target runtime ('claude' or 'opencode')
  */
@@ -615,7 +615,7 @@ function copyFlattenedCommands(srcDir, destDir, prefix, pathPrefix, runtime) {
     return;
   }
   
-  // Remove old gsd-*.md files before copying new ones
+  // Remove old <prefix>-*.md files before copying new ones
   if (fs.existsSync(destDir)) {
     for (const file of fs.readdirSync(destDir)) {
       if (file.startsWith(`${prefix}-`) && file.endsWith('.md')) {
@@ -633,10 +633,10 @@ function copyFlattenedCommands(srcDir, destDir, prefix, pathPrefix, runtime) {
     
     if (entry.isDirectory()) {
       // Recurse into subdirectories, adding to prefix
-      // e.g., commands/gsd/debug/start.md -> command/gsd-debug-start.md
+      // e.g., commands/ac/debug/start.md -> command/ac-debug-start.md
       copyFlattenedCommands(srcPath, destDir, `${prefix}-${entry.name}`, pathPrefix, runtime);
     } else if (entry.name.endsWith('.md')) {
-      // Flatten: help.md -> gsd-help.md
+      // Flatten: help.md -> ac-help.md
       const baseName = entry.name.replace('.md', '');
       const destName = `${prefix}-${baseName}.md`;
       const destPath = path.join(destDir, destName);
@@ -712,8 +712,11 @@ function copyWithPathReplacement(srcDir, destDir, pathPrefix, runtime) {
  */
 function cleanupOrphanedFiles(configDir) {
   const orphanedFiles = [
-    'hooks/gsd-notify.sh',  // Removed in v1.6.x
-    'hooks/statusline.js',  // Renamed to gsd-statusline.js in v1.9.0
+    'hooks/ac-notify.sh',  // Removed upstream
+    'hooks/ac-notify.sh',  // Removed in early AutoCode builds
+    'hooks/statusline.js',  // Renamed upstream (statusline.js → ac-statusline.js → ac-statusline.js)
+    'hooks/ac-statusline.js',  // Legacy
+    'hooks/ac-check-update.js',  // Legacy
   ];
 
   for (const relPath of orphanedFiles) {
@@ -730,11 +733,14 @@ function cleanupOrphanedFiles(configDir) {
  */
 function cleanupOrphanedHooks(settings) {
   const orphanedHookPatterns = [
-    'gsd-notify.sh',  // Removed in v1.6.x
-    'hooks/statusline.js',  // Renamed to gsd-statusline.js in v1.9.0
-    'gsd-intel-index.js',  // Removed in v1.9.2
-    'gsd-intel-session.js',  // Removed in v1.9.2
-    'gsd-intel-prune.js',  // Removed in v1.9.2
+    'ac-notify.sh', // Removed upstream
+    'ac-notify.sh', // Removed in early AutoCode builds
+    'hooks/statusline.js', // Legacy
+    'ac-statusline.js', // Legacy
+    'ac-check-update.js', // Legacy
+    'ac-intel-index.js', // Removed upstream
+    'ac-intel-session.js', // Removed upstream
+    'ac-intel-prune.js', // Removed upstream
   ];
 
   let cleanedHooks = false;
@@ -770,13 +776,23 @@ function cleanupOrphanedHooks(settings) {
   // Fix #330: Update statusLine if it points to old statusline.js path
   if (settings.statusLine && settings.statusLine.command &&
       settings.statusLine.command.includes('statusline.js') &&
-      !settings.statusLine.command.includes('gsd-statusline.js')) {
+      !settings.statusLine.command.includes('ac-statusline.js')) {
     // Replace old path with new path
     settings.statusLine.command = settings.statusLine.command.replace(
       /statusline\.js/,
-      'gsd-statusline.js'
+      'ac-statusline.js'
     );
-    console.log(`  ${green}✓${reset} Updated statusline path (statusline.js → gsd-statusline.js)`);
+    console.log(`  ${green}✓${reset} Updated statusline path (statusline.js → ac-statusline.js)`);
+  }
+
+  // Update legacy gsd-statusline.js path to ac-statusline.js
+  if (settings.statusLine && settings.statusLine.command &&
+      settings.statusLine.command.includes('gsd-statusline.js')) {
+    settings.statusLine.command = settings.statusLine.command.replace(
+      /gsd-statusline\.js/g,
+      'ac-statusline.js'
+    );
+    console.log(`  ${green}✓${reset} Updated statusline path (gsd-statusline.js → ac-statusline.js)`);
   }
 
   return settings;
@@ -818,13 +834,19 @@ function uninstall(isGlobal, runtime = 'claude') {
 
   let removedCount = 0;
 
-  // Codex installs as a skill under skills/gsd/
+  // Codex installs as a skill under skills/ac/
   if (isCodex) {
-    const skillDir = path.join(targetDir, 'skills', 'gsd');
-    if (fs.existsSync(skillDir)) {
-      fs.rmSync(skillDir, { recursive: true });
+    const acSkillDir = path.join(targetDir, 'skills', 'ac');
+    const legacySkillDir = path.join(targetDir, 'skills', 'gsd');
+    if (fs.existsSync(acSkillDir)) {
+      fs.rmSync(acSkillDir, { recursive: true });
       removedCount++;
-      console.log(`  ${green}✓${reset} Removed skills/gsd/`);
+      console.log(`  ${green}✓${reset} Removed skills/ac/`);
+    }
+    if (fs.existsSync(legacySkillDir)) {
+      fs.rmSync(legacySkillDir, { recursive: true });
+      removedCount++;
+      console.log(`  ${green}✓${reset} Removed skills/ac/ (legacy)`);
     }
 
     if (removedCount === 0) {
@@ -840,12 +862,12 @@ function uninstall(isGlobal, runtime = 'claude') {
 
   // 1. Remove AutoCode commands directory
   if (isOpencode) {
-    // OpenCode: remove command/gsd-*.md files
+    // OpenCode: remove command/ac-*.md files
     const commandDir = path.join(targetDir, 'command');
     if (fs.existsSync(commandDir)) {
       const files = fs.readdirSync(commandDir);
       for (const file of files) {
-        if (file.startsWith('gsd-') && file.endsWith('.md')) {
+        if ((file.startsWith('ac-') || file.startsWith('ac-')) && file.endsWith('.md')) {
           fs.unlinkSync(path.join(commandDir, file));
           removedCount++;
         }
@@ -853,30 +875,42 @@ function uninstall(isGlobal, runtime = 'claude') {
       console.log(`  ${green}✓${reset} Removed AutoCode commands from command/`);
     }
   } else {
-    // Claude Code & Gemini: remove commands/gsd/ directory
-    const gsdCommandsDir = path.join(targetDir, 'commands', 'gsd');
-    if (fs.existsSync(gsdCommandsDir)) {
-      fs.rmSync(gsdCommandsDir, { recursive: true });
+    // Claude Code & Gemini: remove commands/ac/ directory
+    const acCommandsDir = path.join(targetDir, 'commands', 'ac');
+    const legacyCommandsDir = path.join(targetDir, 'commands', 'gsd');
+    if (fs.existsSync(acCommandsDir)) {
+      fs.rmSync(acCommandsDir, { recursive: true });
       removedCount++;
-      console.log(`  ${green}✓${reset} Removed commands/gsd/`);
+      console.log(`  ${green}✓${reset} Removed commands/ac/`);
+    }
+    if (fs.existsSync(legacyCommandsDir)) {
+      fs.rmSync(legacyCommandsDir, { recursive: true });
+      removedCount++;
+      console.log(`  ${green}✓${reset} Removed commands/ac/ (legacy)`);
     }
   }
 
-  // 2. Remove get-shit-done directory (AutoCode system content)
-  const gsdDir = path.join(targetDir, 'get-shit-done');
-  if (fs.existsSync(gsdDir)) {
-    fs.rmSync(gsdDir, { recursive: true });
+  // 2. Remove autocode directory (AutoCode system content)
+  const autocodeDir = path.join(targetDir, 'autocode');
+  const legacyDocsDir = path.join(targetDir, 'get-shit-done');
+  if (fs.existsSync(autocodeDir)) {
+    fs.rmSync(autocodeDir, { recursive: true });
     removedCount++;
-    console.log(`  ${green}✓${reset} Removed get-shit-done/`);
+    console.log(`  ${green}✓${reset} Removed autocode/`);
+  }
+  if (fs.existsSync(legacyDocsDir)) {
+    fs.rmSync(legacyDocsDir, { recursive: true });
+    removedCount++;
+    console.log(`  ${green}✓${reset} Removed get-shit-done/ (legacy)`);
   }
 
-  // 3. Remove AutoCode agents (gsd-*.md files only)
+  // 3. Remove AutoCode agents (ac-*.md files only)
   const agentsDir = path.join(targetDir, 'agents');
   if (fs.existsSync(agentsDir)) {
     const files = fs.readdirSync(agentsDir);
     let agentCount = 0;
     for (const file of files) {
-      if (file.startsWith('gsd-') && file.endsWith('.md')) {
+      if ((file.startsWith('ac-') || file.startsWith('ac-')) && file.endsWith('.md')) {
         fs.unlinkSync(path.join(agentsDir, file));
         agentCount++;
       }
@@ -890,9 +924,17 @@ function uninstall(isGlobal, runtime = 'claude') {
   // 4. Remove AutoCode hooks
   const hooksDir = path.join(targetDir, 'hooks');
   if (fs.existsSync(hooksDir)) {
-    const gsdHooks = ['gsd-statusline.js', 'gsd-check-update.js', 'gsd-check-update.sh'];
+    const hooksToRemove = [
+      'ac-statusline.js',
+      'ac-check-update.js',
+      'ac-check-update.sh',
+      'ac-statusline.js', // legacy
+      'ac-check-update.js', // legacy
+      'ac-check-update.sh', // legacy
+      'statusline.js', // legacy
+    ];
     let hookCount = 0;
-    for (const hook of gsdHooks) {
+    for (const hook of hooksToRemove) {
       const hookPath = path.join(hooksDir, hook);
       if (fs.existsSync(hookPath)) {
         fs.unlinkSync(hookPath);
@@ -913,7 +955,7 @@ function uninstall(isGlobal, runtime = 'claude') {
 
     // Remove AutoCode statusline if it references our hook
     if (settings.statusLine && settings.statusLine.command &&
-        settings.statusLine.command.includes('gsd-statusline')) {
+        (settings.statusLine.command.includes('ac-statusline') || settings.statusLine.command.includes('ac-statusline'))) {
       delete settings.statusLine;
       settingsModified = true;
       console.log(`  ${green}✓${reset} Removed AutoCode statusline from settings`);
@@ -925,10 +967,15 @@ function uninstall(isGlobal, runtime = 'claude') {
       settings.hooks.SessionStart = settings.hooks.SessionStart.filter(entry => {
         if (entry.hooks && Array.isArray(entry.hooks)) {
           // Filter out AutoCode hooks
-          const hasGsdHook = entry.hooks.some(h =>
-            h.command && (h.command.includes('gsd-check-update') || h.command.includes('gsd-statusline'))
+          const hasAutoCodeHook = entry.hooks.some(h =>
+            h.command && (
+              h.command.includes('ac-check-update') ||
+              h.command.includes('ac-statusline') ||
+              h.command.includes('ac-check-update') ||
+              h.command.includes('ac-statusline')
+            )
           );
-          return !hasGsdHook;
+          return !hasAutoCodeHook;
         }
         return true;
       });
@@ -967,7 +1014,7 @@ function uninstall(isGlobal, runtime = 'claude') {
             if (config.permission[permType]) {
               const keys = Object.keys(config.permission[permType]);
               for (const key of keys) {
-                if (key.includes('get-shit-done')) {
+                if (key.includes('autocode')) {
                   delete config.permission[permType][key];
                   modified = true;
                 }
@@ -1006,7 +1053,7 @@ function uninstall(isGlobal, runtime = 'claude') {
 
 /**
  * Configure OpenCode permissions to allow reading AutoCode reference docs
- * This prevents permission prompts when AutoCode accesses the get-shit-done directory
+ * This prevents permission prompts when AutoCode accesses the autocode directory
  */
 function configureOpencodePermissions() {
   // OpenCode config file is at ~/.config/opencode/opencode.json
@@ -1035,9 +1082,9 @@ function configureOpencodePermissions() {
   // Build the AutoCode path using the actual config directory
   // Use ~ shorthand if it's in the default location, otherwise use full path
   const defaultConfigDir = path.join(os.homedir(), '.config', 'opencode');
-  const gsdPath = opencodeConfigDir === defaultConfigDir
-    ? '~/.config/opencode/get-shit-done/*'
-    : `${opencodeConfigDir}/get-shit-done/*`;
+  const acPath = opencodeConfigDir === defaultConfigDir
+    ? '~/.config/opencode/autocode/*'
+    : `${opencodeConfigDir}/autocode/*`;
   
   let modified = false;
 
@@ -1045,8 +1092,8 @@ function configureOpencodePermissions() {
   if (!config.permission.read || typeof config.permission.read !== 'object') {
     config.permission.read = {};
   }
-  if (config.permission.read[gsdPath] !== 'allow') {
-    config.permission.read[gsdPath] = 'allow';
+  if (config.permission.read[acPath] !== 'allow') {
+    config.permission.read[acPath] = 'allow';
     modified = true;
   }
 
@@ -1054,8 +1101,8 @@ function configureOpencodePermissions() {
   if (!config.permission.external_directory || typeof config.permission.external_directory !== 'object') {
     config.permission.external_directory = {};
   }
-  if (config.permission.external_directory[gsdPath] !== 'allow') {
-    config.permission.external_directory[gsdPath] = 'allow';
+  if (config.permission.external_directory[acPath] !== 'allow') {
+    config.permission.external_directory[acPath] = 'allow';
     modified = true;
   }
 
@@ -1124,51 +1171,51 @@ function install(isGlobal, runtime = 'claude') {
   if (isCodex) {
     const failures = [];
     const skillsDir = path.join(targetDir, 'skills');
-    const gsdSkillDir = path.join(skillsDir, 'gsd');
+    const acSkillDir = path.join(skillsDir, 'ac');
 
     // For Codex, rewrite ~/.claude/* references to the skill directory itself.
-    const codexPathPrefix = gsdSkillDir.replace(/\\/g, '/') + '/';
+    const codexPathPrefix = acSkillDir.replace(/\\/g, '/') + '/';
 
     console.log(`  Installing for ${cyan}Codex CLI${reset} to ${cyan}${locationLabel}${reset}\n`);
 
     fs.mkdirSync(skillsDir, { recursive: true });
 
     // Clean install: remove existing skill dir to prevent orphaned files
-    if (fs.existsSync(gsdSkillDir)) {
-      fs.rmSync(gsdSkillDir, { recursive: true });
+    if (fs.existsSync(acSkillDir)) {
+      fs.rmSync(acSkillDir, { recursive: true });
     }
-    fs.mkdirSync(gsdSkillDir, { recursive: true });
+    fs.mkdirSync(acSkillDir, { recursive: true });
 
     // Write SKILL.md first so the skill is visible even if a later copy fails
-    writeCodexSkill(gsdSkillDir);
-    if (verifyFileInstalled(path.join(gsdSkillDir, 'SKILL.md'), 'SKILL.md')) {
+    writeCodexSkill(acSkillDir);
+    if (verifyFileInstalled(path.join(acSkillDir, 'SKILL.md'), 'SKILL.md')) {
       console.log(`  ${green}✓${reset} Wrote SKILL.md`);
     } else {
       failures.push('SKILL.md');
     }
 
     // Copy command prompts (for routing), references, templates, and agents into the skill dir.
-    const commandsSrc = path.join(src, 'commands', 'gsd');
-    const commandsDest = path.join(gsdSkillDir, 'commands', 'gsd');
+    const commandsSrc = path.join(src, 'commands', 'ac');
+    const commandsDest = path.join(acSkillDir, 'commands', 'ac');
     copyWithPathReplacement(commandsSrc, commandsDest, codexPathPrefix, runtime);
-    if (verifyInstalled(commandsDest, 'commands/gsd')) {
-      console.log(`  ${green}✓${reset} Installed commands/gsd`);
+    if (verifyInstalled(commandsDest, 'commands/ac')) {
+      console.log(`  ${green}✓${reset} Installed commands/ac`);
     } else {
-      failures.push('commands/gsd');
+      failures.push('commands/ac');
     }
 
-    const docsSrc = path.join(src, 'get-shit-done');
-    const docsDest = path.join(gsdSkillDir, 'get-shit-done');
+    const docsSrc = path.join(src, 'autocode');
+    const docsDest = path.join(acSkillDir, 'autocode');
     copyWithPathReplacement(docsSrc, docsDest, codexPathPrefix, runtime);
-    if (verifyInstalled(docsDest, 'get-shit-done')) {
-      console.log(`  ${green}✓${reset} Installed get-shit-done`);
+    if (verifyInstalled(docsDest, 'autocode')) {
+      console.log(`  ${green}✓${reset} Installed autocode`);
     } else {
-      failures.push('get-shit-done');
+      failures.push('autocode');
     }
 
     const agentsSrc = path.join(src, 'agents');
     if (fs.existsSync(agentsSrc)) {
-      const agentsDest = path.join(gsdSkillDir, 'agents');
+      const agentsDest = path.join(acSkillDir, 'agents');
       fs.mkdirSync(agentsDest, { recursive: true });
       // Copy agents using the same path replacement logic
       copyWithPathReplacement(agentsSrc, agentsDest, codexPathPrefix, runtime);
@@ -1181,7 +1228,7 @@ function install(isGlobal, runtime = 'claude') {
 
     // Copy CHANGELOG.md into the bundled docs
     const changelogSrc = path.join(src, 'CHANGELOG.md');
-    const changelogDest = path.join(gsdSkillDir, 'get-shit-done', 'CHANGELOG.md');
+    const changelogDest = path.join(acSkillDir, 'autocode', 'CHANGELOG.md');
     if (fs.existsSync(changelogSrc)) {
       fs.copyFileSync(changelogSrc, changelogDest);
       if (verifyFileInstalled(changelogDest, 'CHANGELOG.md')) {
@@ -1192,7 +1239,7 @@ function install(isGlobal, runtime = 'claude') {
     }
 
     // Write VERSION file into bundled docs
-    const versionDest = path.join(gsdSkillDir, 'get-shit-done', 'VERSION');
+    const versionDest = path.join(acSkillDir, 'autocode', 'VERSION');
     fs.writeFileSync(versionDest, pkg.version);
     if (verifyFileInstalled(versionDest, 'VERSION')) {
       console.log(`  ${green}✓${reset} Wrote VERSION (${pkg.version})`);
@@ -1205,7 +1252,7 @@ function install(isGlobal, runtime = 'claude') {
       process.exit(1);
     }
 
-    return { runtime, codexSkillDir: gsdSkillDir };
+    return { runtime, codexSkillDir: acSkillDir };
   }
 
   // Path prefix for file references in markdown content
@@ -1235,38 +1282,38 @@ function install(isGlobal, runtime = 'claude') {
     const commandDir = path.join(targetDir, 'command');
     fs.mkdirSync(commandDir, { recursive: true });
     
-    // Copy commands/gsd/*.md as command/gsd-*.md (flatten structure)
-    const gsdSrc = path.join(src, 'commands', 'gsd');
-    copyFlattenedCommands(gsdSrc, commandDir, 'gsd', pathPrefix, runtime);
-    if (verifyInstalled(commandDir, 'command/gsd-*')) {
-      const count = fs.readdirSync(commandDir).filter(f => f.startsWith('gsd-')).length;
+    // Copy commands/ac/*.md as command/ac-*.md (flatten structure)
+    const acSrc = path.join(src, 'commands', 'ac');
+    copyFlattenedCommands(acSrc, commandDir, 'ac', pathPrefix, runtime);
+    if (verifyInstalled(commandDir, 'command/ac-*')) {
+      const count = fs.readdirSync(commandDir).filter(f => f.startsWith('ac-')).length;
       console.log(`  ${green}✓${reset} Installed ${count} commands to command/`);
     } else {
-      failures.push('command/gsd-*');
+      failures.push('command/ac-*');
     }
   } else {
     // Claude Code & Gemini: nested structure in commands/ directory
     const commandsDir = path.join(targetDir, 'commands');
     fs.mkdirSync(commandsDir, { recursive: true });
     
-    const gsdSrc = path.join(src, 'commands', 'gsd');
-    const gsdDest = path.join(commandsDir, 'gsd');
-    copyWithPathReplacement(gsdSrc, gsdDest, pathPrefix, runtime);
-    if (verifyInstalled(gsdDest, 'commands/gsd')) {
-      console.log(`  ${green}✓${reset} Installed commands/gsd`);
+    const acSrc = path.join(src, 'commands', 'ac');
+    const acDest = path.join(commandsDir, 'ac');
+    copyWithPathReplacement(acSrc, acDest, pathPrefix, runtime);
+    if (verifyInstalled(acDest, 'commands/ac')) {
+      console.log(`  ${green}✓${reset} Installed commands/ac`);
     } else {
-      failures.push('commands/gsd');
+      failures.push('commands/ac');
     }
   }
 
-  // Copy get-shit-done skill with path replacement
-  const skillSrc = path.join(src, 'get-shit-done');
-  const skillDest = path.join(targetDir, 'get-shit-done');
+  // Copy autocode skill with path replacement
+  const skillSrc = path.join(src, 'autocode');
+  const skillDest = path.join(targetDir, 'autocode');
   copyWithPathReplacement(skillSrc, skillDest, pathPrefix, runtime);
-  if (verifyInstalled(skillDest, 'get-shit-done')) {
-    console.log(`  ${green}✓${reset} Installed get-shit-done`);
+  if (verifyInstalled(skillDest, 'autocode')) {
+    console.log(`  ${green}✓${reset} Installed autocode`);
   } else {
-    failures.push('get-shit-done');
+    failures.push('autocode');
   }
 
   // Copy agents to agents directory
@@ -1275,10 +1322,10 @@ function install(isGlobal, runtime = 'claude') {
     const agentsDest = path.join(targetDir, 'agents');
     fs.mkdirSync(agentsDest, { recursive: true });
 
-    // Remove old AutoCode agents (gsd-*.md) before copying new ones
+    // Remove old AutoCode agents (ac-*.md / ac-*.md) before copying new ones
     if (fs.existsSync(agentsDest)) {
       for (const file of fs.readdirSync(agentsDest)) {
-        if (file.startsWith('gsd-') && file.endsWith('.md')) {
+        if ((file.startsWith('ac-') || file.startsWith('ac-')) && file.endsWith('.md')) {
           fs.unlinkSync(path.join(agentsDest, file));
         }
       }
@@ -1311,7 +1358,7 @@ function install(isGlobal, runtime = 'claude') {
 
   // Copy CHANGELOG.md
   const changelogSrc = path.join(src, 'CHANGELOG.md');
-  const changelogDest = path.join(targetDir, 'get-shit-done', 'CHANGELOG.md');
+  const changelogDest = path.join(targetDir, 'autocode', 'CHANGELOG.md');
   if (fs.existsSync(changelogSrc)) {
     fs.copyFileSync(changelogSrc, changelogDest);
     if (verifyFileInstalled(changelogDest, 'CHANGELOG.md')) {
@@ -1322,7 +1369,7 @@ function install(isGlobal, runtime = 'claude') {
   }
 
   // Write VERSION file
-  const versionDest = path.join(targetDir, 'get-shit-done', 'VERSION');
+  const versionDest = path.join(targetDir, 'autocode', 'VERSION');
   fs.writeFileSync(versionDest, pkg.version);
   if (verifyFileInstalled(versionDest, 'VERSION')) {
     console.log(`  ${green}✓${reset} Wrote VERSION (${pkg.version})`);
@@ -1360,11 +1407,11 @@ function install(isGlobal, runtime = 'claude') {
   const settingsPath = path.join(targetDir, 'settings.json');
   const settings = cleanupOrphanedHooks(readSettings(settingsPath));
   const statuslineCommand = isGlobal
-    ? buildHookCommand(targetDir, 'gsd-statusline.js')
-    : 'node ' + dirName + '/hooks/gsd-statusline.js';
+    ? buildHookCommand(targetDir, 'ac-statusline.js')
+    : 'node ' + dirName + '/hooks/ac-statusline.js';
   const updateCheckCommand = isGlobal
-    ? buildHookCommand(targetDir, 'gsd-check-update.js')
-    : 'node ' + dirName + '/hooks/gsd-check-update.js';
+    ? buildHookCommand(targetDir, 'ac-check-update.js')
+    : 'node ' + dirName + '/hooks/ac-check-update.js';
 
   // Enable experimental agents for Gemini CLI (required for custom sub-agents)
   if (isGemini) {
@@ -1386,11 +1433,11 @@ function install(isGlobal, runtime = 'claude') {
       settings.hooks.SessionStart = [];
     }
 
-    const hasGsdUpdateHook = settings.hooks.SessionStart.some(entry =>
-      entry.hooks && entry.hooks.some(h => h.command && h.command.includes('gsd-check-update'))
+    const hasUpdateHook = settings.hooks.SessionStart.some(entry =>
+      entry.hooks && entry.hooks.some(h => h.command && h.command.includes('ac-check-update'))
     );
 
-    if (!hasGsdUpdateHook) {
+    if (!hasUpdateHook) {
       settings.hooks.SessionStart.push({
         hooks: [
           {
@@ -1413,7 +1460,7 @@ function install(isGlobal, runtime = 'claude') {
 function writeCodexSkill(skillDir) {
   const skill = [
     '---',
-    'name: gsd',
+    'name: ac',
     'description: Spec-driven development workflows (AutoCode) for Codex CLI. Uses .planning/ state files to plan, execute, and verify work.',
     'metadata:',
     '  short-description: AutoCode project workflow',
@@ -1425,11 +1472,11 @@ function writeCodexSkill(skillDir) {
     '',
     '## How to Use',
     '',
-    '- Invoke: `$gsd <command> [args]`',
-    '- If you already have muscle memory from Claude Code, you can also paste `/gsd:<command>` and I’ll treat it the same.',
+    '- Invoke: `$ac <command> [args]`',
+    '- If you already have muscle memory from Claude Code, you can also paste `/ac:<command>` and I’ll treat it the same.',
     '- Verification-first: when a command includes success criteria, don’t stop until they are met. Run relevant tests/lint/build where applicable.',
     '',
-    '## Commands (mirror Claude’s /gsd:* set)',
+    '## Commands (mirror Claude’s /ac:* set)',
     '',
     '- `help`',
     '- `new-project`',
@@ -1447,13 +1494,13 @@ function writeCodexSkill(skillDir) {
     '',
     '## Power Features',
     '',
-    '- Kanban UI: run the `kanban` command (or directly: `node get-shit-done/tools/kanban.js`) to manage `.planning/todos/` visually.',
-    '- Autopilot loop (optional): you can run `node get-shit-done/tools/autopilot.js "<goal>" --verify "<cmd>"` to keep iterating until verification passes.',
+    '- Kanban UI: run the `kanban` command (or directly: `node autocode/tools/kanban.js`) to manage `.planning/todos/` visually.',
+    '- Autopilot loop (optional): you can run `node autocode/tools/autopilot.js "<goal>" --verify "<cmd>"` to keep iterating until verification passes.',
     '',
     '## What’s Bundled In This Skill',
     '',
-    '- `commands/gsd/`: the original prompts (used as the source of truth)',
-    '- `get-shit-done/`: workflows, references, and templates',
+    '- `commands/ac/`: the original prompts (used as the source of truth)',
+    '- `autocode/`: workflows, references, and templates',
     '- `agents/`: role prompts (planner/executor/verifier/researcher)',
     '',
     '## Codex Adaptation Rules',
@@ -1468,12 +1515,12 @@ function writeCodexSkill(skillDir) {
     '',
     'When invoked, do this:',
     '',
-    '1. Parse the user’s requested command (supports `help`, `/gsd:help`, `gsd:help`, etc.).',
-    '2. Read `commands/gsd/<command>.md`.',
+    '1. Parse the user’s requested command (supports `help`, `/ac:help`, `/ac-help`, etc.).',
+    '2. Read `commands/ac/<command>.md`.',
     '3. Follow the file’s `<objective>`, `<execution_context>`, and `<process>` to completion.',
     '4. Create/update project files under `.planning/` as specified.',
     '',
-    'If a command isn’t found, list available files under `commands/gsd/` and ask which to run.',
+    'If a command isn’t found, list available files under `commands/ac/` and ask which to run.',
     '',
   ].join('\n');
 
@@ -1507,7 +1554,7 @@ function finishInstall(settingsPath, settings, statuslineCommand, shouldInstallS
   if (runtime === 'gemini') program = 'Gemini';
   if (runtime === 'codex') program = 'Codex CLI';
 
-  const command = isOpencode ? '/gsd-help' : '/gsd:help';
+  const command = isOpencode ? '/ac-help' : '/ac:help';
   console.log(`
   ${green}Done!${reset} Launch ${program} and run ${cyan}${command}${reset}.
 
@@ -1521,7 +1568,7 @@ function finishCodexInstall(codexSkillDir) {
   ${green}Done!${reset} Restart ${cyan}Codex${reset} to pick up the new skill.
 
   Then run:
-    ${cyan}$gsd help${reset}
+    ${cyan}$ac help${reset}
 
   Installed at: ${dim}${locationLabel}${reset}
 

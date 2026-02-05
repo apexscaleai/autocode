@@ -1,8 +1,9 @@
 {
-  "name": "autocode-cc",
+  "name": "autocode-ac",
   "version": "1.11.1-autocode.1",
   "description": "AutoCode: a meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini, and Codex (forked from Get Shit Done by TÂCHES).",
   "bin": {
+    "autocode-ac": "bin/install.js",
     "autocode": "bin/install.js",
     "autocode-kanban": "bin/kanban.js",
     "autocode-autopilot": "bin/autopilot.js"
@@ -10,14 +11,13 @@
   "files": [
     "bin",
     "commands",
-    "get-shit-done",
+    "autocode",
     "agents",
     "hooks/dist",
     "scripts"
   ],
   "keywords": [
     "autocode",
-    "gsd",
     "claude",
     "claude-code",
     "ai",
