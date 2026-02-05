@@ -1,9 +1,11 @@
 {
-  "name": "get-shit-done-cc",
-  "version": "1.11.1",
-  "description": "A meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode and Gemini by TÂCHES.",
+  "name": "autocode-cc",
+  "version": "1.11.1-autocode.1",
+  "description": "AutoCode: a meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini, and Codex (forked from GSD by TÂCHES).",
   "bin": {
-    "get-shit-done-cc": "bin/install.js"
+    "autocode": "bin/install.js",
+    "autocode-kanban": "bin/kanban.js",
+    "autocode-autopilot": "bin/autopilot.js"
   },
   "files": [
     "bin",
@@ -14,6 +16,8 @@
     "scripts"
   ],
   "keywords": [
+    "autocode",
+    "gsd",
     "claude",
     "claude-code",
     "ai",
@@ -21,17 +25,19 @@
     "context-engineering",
     "spec-driven-development",
     "gemini",
-    "gemini-cli"
+    "gemini-cli",
+    "codex",
+    "codex-cli"
   ],
   "author": "TÂCHES",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glittercowboy/get-shit-done.git"
+    "url": "git+https://github.com/apexscaleai/autocode.git"
   },
-  "homepage": "https://github.com/glittercowboy/get-shit-done",
+  "homepage": "https://github.com/apexscaleai/autocode",
   "bugs": {
-    "url": "https://github.com/glittercowboy/get-shit-done/issues"
+    "url": "https://github.com/apexscaleai/autocode/issues"
   },
   "engines": {
     "node": ">=16.7.0"

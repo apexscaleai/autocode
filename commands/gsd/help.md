@@ -30,7 +30,7 @@ Output ONLY the reference content below. Do NOT add:
 GSD evolves fast. Update periodically:
 
 ```bash
-npx get-shit-done-cc@latest
+npx autocode-cc@latest
 ```
 
 ## Core Workflow
@@ -268,6 +268,14 @@ List pending todos and select one to work on.
 Usage: `/gsd:check-todos`
 Usage: `/gsd:check-todos api`
 
+**`/gsd:kanban`**
+Launch a visual Kanban board for `.planning/todos/`.
+
+- Opens a lightweight local web UI
+- Drag-and-drop between Pending and Done lanes (moves todo files)
+
+Usage: `/gsd:kanban`
+
 ### User Acceptance Testing
 
 **`/gsd:verify-work [phase]`**
@@ -334,7 +342,7 @@ Update GSD to latest version with changelog preview.
 - Displays changelog entries for versions you've missed
 - Highlights breaking changes
 - Confirms before running install
-- Better than raw `npx get-shit-done-cc`
+- Better than raw `npx autocode-cc`
 
 Usage: `/gsd:update`
 

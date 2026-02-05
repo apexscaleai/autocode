@@ -1,13 +1,13 @@
 <div align="center">
 
-# GET SHIT DONE
+# AUTOCODE
 
-**A light-weight and powerful meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, and Gemini CLI.**
+**AutoCode is a light-weight meta-prompting + context engineering + spec-driven development system for Claude Code, OpenCode, Gemini CLI, and Codex CLI.**
 
-**Solves context rot — the quality degradation that happens as Claude fills its context window.**
+**Forked from Get Shit Done (GSD) by TÂCHES (MIT).**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
+[![npm version](https://img.shields.io/npm/v/autocode-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/autocode-cc)
+[![npm downloads](https://img.shields.io/npm/dm/autocode-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/autocode-cc)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/5JJgD5svVS)
 [![GitHub stars](https://img.shields.io/github/stars/glittercowboy/get-shit-done?style=for-the-badge&logo=github&color=181717)](https://github.com/glittercowboy/get-shit-done)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
@@ -15,7 +15,7 @@
 <br>
 
 ```bash
-npx get-shit-done-cc
+npx autocode-cc
 ```
 
 **Works on Mac, Windows, and Linux.**
@@ -73,21 +73,24 @@ People who want to describe what they want and have it built correctly — witho
 ## Getting Started
 
 ```bash
-npx get-shit-done-cc
+npx autocode-cc
 ```
 
 The installer prompts you to choose:
-1. **Runtime** — Claude Code, OpenCode, Gemini, or all
+1. **Runtime** — Claude Code, OpenCode, Gemini, Codex, or all
 2. **Location** — Global (all projects) or local (current project only)
 
-Verify with `/gsd:help` inside your chosen runtime.
+Verify inside your chosen runtime:
+- Claude Code / Gemini: `/gsd:help`
+- OpenCode: `/gsd-help`
+- Codex: `$gsd help` (restart Codex after install)
 
 ### Staying Updated
 
 GSD evolves fast. Update periodically:
 
 ```bash
-npx get-shit-done-cc@latest
+npx autocode-cc@latest
 ```
 
 <details>
@@ -95,21 +98,24 @@ npx get-shit-done-cc@latest
 
 ```bash
 # Claude Code
-npx get-shit-done-cc --claude --global   # Install to ~/.claude/
-npx get-shit-done-cc --claude --local    # Install to ./.claude/
+npx autocode-cc --claude --global   # Install to ~/.claude/
+npx autocode-cc --claude --local    # Install to ./.claude/
 
 # OpenCode (open source, free models)
-npx get-shit-done-cc --opencode --global # Install to ~/.config/opencode/
+npx autocode-cc --opencode --global # Install to ~/.config/opencode/
 
 # Gemini CLI
-npx get-shit-done-cc --gemini --global   # Install to ~/.gemini/
+npx autocode-cc --gemini --global   # Install to ~/.gemini/
+
+# Codex CLI (installs a Codex Skill)
+npx autocode-cc --codex --global    # Install to ~/.codex/skills/gsd/
 
 # All runtimes
-npx get-shit-done-cc --all --global      # Install to all directories
+npx autocode-cc --all --global      # Install to all directories
 ```
 
 Use `--global` (`-g`) or `--local` (`-l`) to skip the location prompt.
-Use `--claude`, `--opencode`, `--gemini`, or `--all` to skip the runtime prompt.
+Use `--claude`, `--opencode`, `--gemini`, `--codex`, or `--all` to skip the runtime prompt.
 
 </details>
 
@@ -548,23 +554,27 @@ At milestone completion, GSD offers squash merge (recommended) or merge with his
 ## Troubleshooting
 
 **Commands not found after install?**
-- Restart Claude Code to reload slash commands
-- Verify files exist in `~/.claude/commands/gsd/` (global) or `./.claude/commands/gsd/` (local)
+- Restart your runtime to reload commands/skills
+- Verify files exist:
+  - Claude Code: `~/.claude/commands/gsd/` (global) or `./.claude/commands/gsd/` (local)
+  - OpenCode: `~/.config/opencode/command/` (global)
+  - Gemini: `~/.gemini/commands/gsd/` (global)
+  - Codex: `~/.codex/skills/gsd/` (global)
 
 **Commands not working as expected?**
-- Run `/gsd:help` to verify installation
-- Re-run `npx get-shit-done-cc` to reinstall
+- Run `/gsd:help` (Claude/Gemini) or `/gsd-help` (OpenCode) or `$gsd help` (Codex) to verify installation
+- Re-run `npx autocode-cc` to reinstall
 
 **Updating to the latest version?**
 ```bash
-npx get-shit-done-cc@latest
+npx autocode-cc@latest
 ```
 
 **Using Docker or containerized environments?**
 
 If file reads fail with tilde paths (`~/.claude/...`), set `CLAUDE_CONFIG_DIR` before installing:
 ```bash
-CLAUDE_CONFIG_DIR=/home/youruser/.claude npx get-shit-done-cc --global
+CLAUDE_CONFIG_DIR=/home/youruser/.claude npx autocode-cc --global
 ```
 This ensures absolute paths are used instead of `~` which may not expand correctly in containers.
 
@@ -574,12 +584,14 @@ To remove GSD completely:
 
 ```bash
 # Global installs
-npx get-shit-done-cc --claude --global --uninstall
-npx get-shit-done-cc --opencode --global --uninstall
+npx autocode-cc --claude --global --uninstall
+npx autocode-cc --opencode --global --uninstall
+npx autocode-cc --codex --global --uninstall
 
 # Local installs (current project)
-npx get-shit-done-cc --claude --local --uninstall
-npx get-shit-done-cc --opencode --local --uninstall
+npx autocode-cc --claude --local --uninstall
+npx autocode-cc --opencode --local --uninstall
+npx autocode-cc --codex --local --uninstall
 ```
 
 This removes all GSD commands, agents, hooks, and settings while preserving your other configurations.
@@ -588,7 +600,7 @@ This removes all GSD commands, agents, hooks, and settings while preserving your
 
 ## Community Ports
 
-OpenCode and Gemini CLI are now natively supported via `npx get-shit-done-cc`.
+OpenCode, Gemini CLI, and Codex CLI are now natively supported via `npx autocode-cc`.
 
 These community ports pioneered multi-runtime support:
 

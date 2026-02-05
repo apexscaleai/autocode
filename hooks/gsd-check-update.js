@@ -42,7 +42,12 @@ const child = spawn(process.execPath, ['-e', `
 
   let latest = null;
   try {
-    latest = execSync('npm view get-shit-done-cc version', { encoding: 'utf8', timeout: 10000, windowsHide: true }).trim();
+    // AutoCode fork: prefer autocode-cc, fall back to upstream package if not published.
+    try {
+      latest = execSync('npm view autocode-cc version', { encoding: 'utf8', timeout: 10000, windowsHide: true }).trim();
+    } catch (e) {
+      latest = execSync('npm view get-shit-done-cc version', { encoding: 'utf8', timeout: 10000, windowsHide: true }).trim();
+    }
   } catch (e) {}
 
   const result = {

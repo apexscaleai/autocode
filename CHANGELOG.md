@@ -6,6 +6,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- Native Codex CLI support — install with `--codex` flag or select from interactive menu (installs a Codex Skill at `~/.codex/skills/gsd/`)
+- Visual Kanban board for `.planning/todos/` (`/gsd:kanban` or `autocode-kanban`)
+- Autopilot loop CLI to iterate with Codex until verification passes (`autocode-autopilot`)
+
+### Changed
+- Rebranded fork as AutoCode (`autocode-cc`)
+
 ## [1.11.1] - 2026-01-31
 
 ### Added
@@ -343,7 +351,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.5.17] - 2026-01-15
 
 ### Added
-- New `/gsd:update` command — check for updates, install, and display changelog of what changed (better UX than raw `npx get-shit-done-cc`)
+- New `/gsd:update` command — check for updates, install, and display changelog of what changed (better UX than raw `npx autocode-cc`)
 
 ## [1.5.16] - 2026-01-15
 
